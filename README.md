@@ -9,7 +9,7 @@ Features
 * Built on top of PDO.
 * No configuration.
 
-SELECT a table
+SELECT
 -------------------
 
 ```php
@@ -20,7 +20,7 @@ echo $userModel->id;
 echo $userModel->password;
 ```
 
-INSERT a table
+INSERT
 -------------------
 
 ```php
@@ -34,7 +34,7 @@ $user->data->password='foobar';
 $user->save();
 ```
 
-UPDATE a table
+UPDATE
 -------------------
 
 ```php
@@ -49,7 +49,7 @@ $userModel->data->password='foobar';
 $userModel->save('id'); // choose a primary key (loaded in $userModel->load, 3rd parameter)
 ```
 
-DELETE a table
+DELETE
 -------------------
 
 ```php

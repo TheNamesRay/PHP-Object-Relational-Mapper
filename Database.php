@@ -60,8 +60,9 @@ class Database
      */  
     public static function query($query)
     {
-        if (!self::$connection)
-            self::load_database();
+        if (!self::$connection) {
+                    self::load_database();
+        }
         self::$stmt = self::$connection->prepare($query);
 		
         return new static;

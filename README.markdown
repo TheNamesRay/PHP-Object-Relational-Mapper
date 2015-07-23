@@ -90,7 +90,7 @@ $userModel->data->username='<hey der ima script0r>';
 
 $userModel->validation = function() use ($userModel) 
 {
-	if(strip_tags($userModel->data->username)!==$userModel->data->motto)
+	if(strip_tags($userModel->data->username)!==$userModel->data->username)
 	  return false;
 };
 

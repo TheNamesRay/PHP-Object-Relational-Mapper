@@ -97,6 +97,6 @@ $userModel->validation = function() use ($userModel)
 // check if everything went well
 echo $user->save() ? 'Everything is okay' : 'Validation not passed';
 
-// you can also do validations with LOAD, 
+// you can also do validations with UPDATE, 
 // just add the load($key,$value,$columns) after $userModel = new Model('users')
 ```

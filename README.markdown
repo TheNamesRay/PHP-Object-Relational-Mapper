@@ -1,5 +1,6 @@
 PHP + MySQL ORM
 =====================
+[![Build Status](https://scrutinizer-ci.com/g/KuntaProject/ORMLight/badges/build.png?b=master)](https://scrutinizer-ci.com/g/KuntaProject/ORMLight/build-status/master)
 > **Note:** This ORM is still in development, but it supports basic CRUD actions.
 
 A very simple ORM for your PHP application. If you use the MVC pattern, you will be able to use this class with your models. Basically what it does is it binds a MySQL database table to an object, making it easier to perform MySQL queries.

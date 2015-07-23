@@ -1,4 +1,4 @@
-Lightweight ORM
+PHP + MySQL ORM
 =====================
 A very simple ORM for your PHP application. If you use the MVC pattern, you will be able to use this class with your models. Basically what it does is it binds a MySQL database table to an object, making it easier to perform MySQL queries.
 

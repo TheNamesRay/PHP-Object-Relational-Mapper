@@ -39,14 +39,14 @@ INSERT
 -------------------
 
 ```php
-$user = new Model('users');
+$userModel = new Model('users');
 
 // set new data
-$user->data->email='foo@bar.com';
-$user->data->password='foobar';
+$userModel->data->email='foo@bar.com';
+$userModel->data->password='foobar';
 
 // save the record
-$user->save();
+$userModel->save();
 ```
 
 UPDATE

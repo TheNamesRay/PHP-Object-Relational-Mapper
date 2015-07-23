@@ -27,8 +27,8 @@ $userModel = new Model('users');
 // SELECT id, password FROM users WHERE username = $_POST['username']
 $userModel->load('username', $_POST['username'], 'id, password'); 
 
-echo $userModel->id;
-echo $userModel->password;
+echo $userModel->data->id;
+echo $userModel->data->password;
 ```
 
 INSERT

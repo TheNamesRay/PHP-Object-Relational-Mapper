@@ -62,7 +62,7 @@ $userModel->data->id=265;
 $userModel->data->password='foobar';
 
 // save the updates
-// UPDATE users SET id = :update_id, password = :update_password WHERE id = :where_id
+// UPDATE users SET id = :update_id, password = :update_password WHERE id = 265
 $userModel->save('id'); // choose a primary key (loaded in $userModel->load, 3rd parameter)
 ```
 
@@ -74,7 +74,7 @@ $userModel = new Model('users');
 $userModel->data->id=34;
 
 // delete the record
-$userModel->delete('id'); // choose a primary key, set above.
+$userModel->delete('id'); // DELETE ... WHERE id = 34
 ```
 
 VALIDATION

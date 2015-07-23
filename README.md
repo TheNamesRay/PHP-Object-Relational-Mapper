@@ -13,6 +13,12 @@ SELECT
 
 ```php
 $userModel = new Model('users');
+
+// load data from table,
+// 1st parameter: primary key
+// 2nd parameter: value to search for
+// 3rd parameter: columns to load (default:*)
+// SELECT id, password FROM users WHERE username = $_POST['username']
 $userModel->load('username', $_POST['username'], 'id, password'); 
 
 echo $userModel->id;
@@ -38,6 +44,11 @@ UPDATE
 
 ```php
 $userModel = new Model('users');
+
+// load data from table,
+// 1st parameter: primary key
+// 2nd parameter: value to search for
+// 3rd parameter: columns to load (default:*)
 $userModel->load('username', $_POST['username'], 'id, password'); 
 
 // modify the loaded data
@@ -45,6 +56,7 @@ $userModel->data->id=265;
 $userModel->data->password='foobar';
 
 // save the updates
+// UPDATE users SET id = :update_id, password = :update_password WHERE id = :where_id
 $userModel->save('id'); // choose a primary key (loaded in $userModel->load, 3rd parameter)
 ```
 

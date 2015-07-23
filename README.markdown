@@ -11,7 +11,7 @@ A very simple ORM for your PHP application. If you use the MVC pattern, you will
 
 ### Requirements ###
 
-* > PHP 5.3
+* PHP 5.3 or greater
 * PDO_mysql extension
 
 SELECT

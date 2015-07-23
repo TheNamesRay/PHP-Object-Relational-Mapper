@@ -81,18 +81,22 @@ VALIDATION
 -------------------
 
 ```php
-$user = new Model('users');
+
+// example validation with INSERT
+$userModel = new Model('users');
 
 // set new data
-$user->data->username='<>';
-$user->data->password='foobar';
+$userModel->data->username='<hey der ima script0r>';
 
-$model->validation = function() use ($model) 
+$userModel->validation = function() use ($userModel) 
 {
-	if(strip_tags($model->data->motto)!==$model->data->motto)
+	if(strip_tags($userModel->data->username)!==$userModel->data->motto)
 	  return false;
 };
 
 // check if everything went well
 echo $user->save() ? 'Everything is okay' : 'Validation not passed';
+
+// you can also do validations with LOAD, 
+// just add the load($key,$value,$columns) after $userModel = new Model('users')
 ```

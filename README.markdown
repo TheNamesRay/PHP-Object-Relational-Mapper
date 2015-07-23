@@ -7,7 +7,8 @@ A very simple ORM for your PHP application. If you use the MVC pattern, you will
 * Dead simple CRUD actions.
 * Validation on every save.
 * Built on top of PDO.
-* No configuration.
+* No configuration (except Database)
+* Prepared statements.
 
 ### Requirements ###
 

@@ -5,8 +5,14 @@ A very simple ORM for your PHP application. If you use the MVC pattern, you will
 ### Features ###
 
 * Dead simple CRUD actions.
+* Validation on every save.
 * Built on top of PDO.
 * No configuration.
+
+### Requirements ###
+
+* > PHP 5.3
+* PDO_mysql extension
 
 SELECT
 -------------------
@@ -69,4 +75,24 @@ $userModel->data->id=34;
 
 // delete the record
 $userModel->delete('id'); // choose a primary key, set above.
+```
+
+VALIDATION
+-------------------
+
+```php
+$user = new Model('users');
+
+// set new data
+$user->data->username='<>';
+$user->data->password='foobar';
+
+$model->validation = function() use ($model) 
+{
+	if(strip_tags($model->data->motto)!==$model->data->motto)
+	  return false;
+};
+
+// check if everything went well
+echo $user->save() ? 'Everything is okay' : 'Validation not passed';
 ```

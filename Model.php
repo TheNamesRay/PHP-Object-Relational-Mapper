@@ -150,5 +150,6 @@ class Model
         }
         // execute the final query
         $u->execute();
+        return true;
     }
 }

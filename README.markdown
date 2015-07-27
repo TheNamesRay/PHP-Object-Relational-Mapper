@@ -22,7 +22,8 @@ SELECT
 -------------------
 
 ```php
-$userModel = new Model('users');
+$dbh = new Database;
+$userModel = new Model('users', $dbh);
 
 // load data from table,
 // 1st parameter: primary key
@@ -39,7 +40,9 @@ INSERT
 -------------------
 
 ```php
-$userModel = new Model('users');
+
+$dbh = new Database;
+$userModel = new Model('users', $dbh);
 
 // set new data
 $userModel->data->email='foo@bar.com';
@@ -53,7 +56,8 @@ UPDATE
 -------------------
 
 ```php
-$userModel = new Model('users');
+$dbh = new Database;
+$userModel = new Model('users', $dbh);
 
 // load data from table,
 // 1st parameter: primary key
@@ -74,7 +78,8 @@ DELETE
 -------------------
 
 ```php
-$userModel = new Model('users');
+$dbh = new Database;
+$userModel = new Model('users', $dbh);
 $userModel->data->id=34;
 
 // delete the record
@@ -87,7 +92,8 @@ VALIDATION
 ```php
 
 // example validation with INSERT
-$userModel = new Model('users');
+$dbh = new Database;
+$userModel = new Model('users', $dbh);
 
 // set new data
 $userModel->data->username='<hey der ima script0r>';

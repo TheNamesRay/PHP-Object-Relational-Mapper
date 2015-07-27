@@ -15,6 +15,13 @@ require_once './Database.php';
 class Model
 {
     /**
+     * Property: dbh
+     * Type: object
+     *
+     * The database connection.
+     */
+    private $_dbh;
+    /**
      * Property: data
      * Type: object
      *
@@ -46,11 +53,12 @@ class Model
      *
      * @param $p Table Name
      */    
-    public function __construct($p)
+    public function __construct($p,$dbh)
     {
         $this->data   = new StdClass();
         $this->validation = function(){};
         $this->_table = $p;
+        $this->_dbh = $dbh;
     }
     /**
      * Function: load
@@ -67,7 +75,7 @@ class Model
     public function load($q, $r, $s = '*')
     {
         $t = "SELECT $s FROM {$this->_table} WHERE $q = ?";
-        $u = Database::query($t)->bind(1, $r)->single();
+        $u = $this->dbh->query($t)->bind(1, $r)->single();
         $this->data = (object) $u;
         return $u ? true : false;
     }
@@ -88,7 +96,7 @@ class Model
     {
         $t = "DELETE FROM {$this->_table}";
         $t .= " WHERE $v = :where_$v";
-        $u = Database::query($t);
+        $u = $this->dbh->query($t);
         $u->bind("where_$v",$this->data->$v);
         $u->execute();
     }
@@ -126,7 +134,7 @@ class Model
             }
             $t = "UPDATE {$this->_table} SET $y";
             $t .= " WHERE $v = :where_$v";
-            $u = Database::query($t);
+            $u = $this->dbh->query($t);
             $u->bind("where_$v",$this->data->$v);
             foreach ($w as $z => $aa) {
                 $u->bind('update_' . $z, $aa);
@@ -143,7 +151,7 @@ class Model
                 }
             }
             $t = "INSERT INTO {$this->_table}($j) VALUES ($y)";
-            $u = Database::query($t);
+            $u = $this->dbh->query($t);
             foreach ($w as $z => $aa) {
                 $u->bind('insert_' . $z, $aa);
             }

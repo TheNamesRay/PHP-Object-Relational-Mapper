@@ -75,7 +75,7 @@ class Model
     public function load($q, $r, $s = '*')
     {
         $t = "SELECT $s FROM {$this->_table} WHERE $q = ?";
-        $u = $this->dbh->query($t)->bind(1, $r)->single();
+        $u = $this->_dbh->query($t)->bind(1, $r)->single();
         $this->data = (object) $u;
         return $u ? true : false;
     }
@@ -96,7 +96,7 @@ class Model
     {
         $t = "DELETE FROM {$this->_table}";
         $t .= " WHERE $v = :where_$v";
-        $u = $this->dbh->query($t);
+        $u = $this->_dbh->query($t);
         $u->bind("where_$v",$this->data->$v);
         $u->execute();
     }
@@ -134,7 +134,7 @@ class Model
             }
             $t = "UPDATE {$this->_table} SET $y";
             $t .= " WHERE $v = :where_$v";
-            $u = $this->dbh->query($t);
+            $u = $this->_dbh->query($t);
             $u->bind("where_$v",$this->data->$v);
             foreach ($w as $z => $aa) {
                 $u->bind('update_' . $z, $aa);
@@ -151,7 +151,7 @@ class Model
                 }
             }
             $t = "INSERT INTO {$this->_table}($j) VALUES ($y)";
-            $u = $this->dbh->query($t);
+            $u = $this->_dbh->query($t);
             foreach ($w as $z => $aa) {
                 $u->bind('insert_' . $z, $aa);
             }

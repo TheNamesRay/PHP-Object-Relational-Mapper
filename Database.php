@@ -18,14 +18,14 @@ class Database
      * Where the PDO connection link
      * will be stored.
      */
-    public static $connection;
+    public $connection;
     /**
      * Property: stmt
      *
      * Where the PDO statement
      * will be stored.
      */
-    public static $stmt;
+    public $stmt;
 
     /**
      * Constant: HOST
@@ -45,10 +45,10 @@ class Database
      * Create a link if not created
      * already.
      */    
-    private static function load_database()
+    private function load_database()
     {
         $dsn = 'mysql:host=' . self::HOST . ';dbname=' . self::DB;
-        self::$connection = new PDO($dsn, self::USER, self::PWD, array(
+        $this->connection = new PDO($dsn, self::USER, self::PWD, array(
             PDO::ATTR_PERSISTENT => true,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ));
@@ -58,14 +58,14 @@ class Database
      *
      * Does a new query.
      */  
-    public static function query($query)
+    public function query($query)
     {
-        if (!self::$connection) {
-                    self::load_database();
+        if (!$this->connection) {
+                    $this->load_database();
         }
-        self::$stmt = self::$connection->prepare($query);
+        $this->stmt = $this->connection->prepare($query);
 		
-        return new static;
+        return $this;
     }
     /**
      * Function: bind
@@ -73,7 +73,7 @@ class Database
      * Binds new keys into the 
      * PDOStatement.
      */  
-    public static function bind($pos, $value, $type = null)
+    public function bind($pos, $value, $type = null)
     {
         if (is_null($type)) {
             switch (true) {
@@ -90,36 +90,36 @@ class Database
                     $type = PDO::PARAM_STR;
             }
         }
-        self::$stmt->bindValue($pos, $value, $type);
-        return new static;
+        $this->stmt->bindValue($pos, $value, $type);
+        return $this;
     }
     /**
      * Function: execute
      *
      * Executes the statement.
      */  
-    public static function execute()
+    public function execute()
     {
-		return self::$stmt->execute();	
+		return $this->stmt->execute();	
     }
     /**
      * Function: result_set
      *
      * PDOStatement::fetchAll()
      */  
-    public static function result_set()
+    public function result_set()
     {
-        self::execute();
-        return self::$stmt->fetchAll(PDO::FETCH_ASSOC);
+        $this->execute();
+        return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     /**
      * Function: single
      *
      * PDOStatement::fetch()
      */  
-    public static function single()
+    public function single()
     {
-        self::execute();
-        return self::$stmt->fetch(PDO::FETCH_ASSOC);
+        $this->execute();
+        return $this->stmt->fetch(PDO::FETCH_ASSOC);
     }
 }

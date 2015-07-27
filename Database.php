@@ -30,14 +30,14 @@ class Database
     /**
      * Constant: HOST
      * Constant: USER
-     * Constant: PWD
+     * Constant: PASS
      * Constant: DB
      *
      * The MySQL connection details.
      */    
     const HOST = '127.0.0.1';
     const USER = 'root';
-    const PWD = '';
+    const PASS = '';
     const DB = 'store';
     /**
      * Function: load_database
@@ -48,7 +48,7 @@ class Database
     private function load_database()
     {
         $dsn = 'mysql:host=' . self::HOST . ';dbname=' . self::DB;
-        $this->connection = new PDO($dsn, self::USER, self::PWD, array(
+        $this->connection = new PDO($dsn, self::USER, self::PASS, array(
             PDO::ATTR_PERSISTENT => true,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ));

@@ -9,9 +9,7 @@
  * @php     5.3 or greater
  * @license GNU GPL
  */
-    
-require_once './Database.php';
-
+ 
 class Model
 {
     /**
